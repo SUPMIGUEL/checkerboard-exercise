@@ -1,28 +1,30 @@
-
-
+window.onload = function(){
+	setInterval(function(){
+		createBoard();
+	},2000);
+	document.body.style.margin = "0";
+};
 
 var div = document.getElementsByTagName("div");
-var cssR = "padding-bottom: 11.1%; width: 11.1%; float: left; background-color : red;";
-var cssB = "padding-bottom: 11.1%; width: 11.1%; float: left; background-color : black;";
-
+var cssR = "padding-bottom: 11.1%; width: 11.1%; float: left;";
 
 function createBoard(){
 	for (var i = 0; i < 99; i++) {
 		var divNew = document.createElement("div");
 		document.body.appendChild(divNew);
-		if (i % 2 === 0) {
-			div[i].style.cssText = cssR;
-		}
-		else{
-			div[i].style.cssText = cssB;
-		}
+		div[i].style.cssText = cssR;
+		div[i].style.backgroundColor= getRandomColor();
 	}
 }
 
-window.onload = function(){
-	createBoard();
-	document.body.style.margin = "0";
-};
+function getRandomColor() {
+    var hex = '0123456789ABCDEF'.split("");
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color = color + hex[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
 
 
