@@ -5,24 +5,34 @@ window.onload = function(){
 
 var div = document.getElementsByTagName("div");
 var cssR = "padding-bottom: 11.1%; width: 11.1%; float: left;";
+var color1 = getOneColor();
+var color2 = getOneColor();
 
 function createBoard(){
+	var n = 1;
 	for (var i = 0; i < 99; i++) {
 		var divNew = document.createElement("div");
 		document.body.appendChild(divNew);
 		div[i].style.cssText = cssR;
-		div[i].style.backgroundColor= getRandomColor();
+		if (i%9===0 && i!==0) {
+			n=n-0.1;
+		}
+		if (i%2===0) {
+			div[i].style.backgroundColor= color1;
+			div[i].style.opacity= n;
+		}
+		else{
+			div[i].style.backgroundColor= color2;
+			div[i].style.opacity= n;
+		}
 	}
 }
 
-function getRandomColor() {
-    var hex = '0123456789ABCDEF'.split("");
+function getOneColor(){
+	var hex = '0123456789ABCDEF'.split("");
     var color = '#';
     for (var i = 0; i < 6; i++ ) {
-        color = color + hex[Math.floor(Math.random() * 16)];
+        	color = color + hex[Math.floor(Math.random() * 16)];
     }
     return color;
 }
-
-
-
